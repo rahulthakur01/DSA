@@ -18,3 +18,34 @@
     
     return ans;
 }
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+vector<int> intersectionArray(vector<int>& nums1, vector<int>& nums2) {
+    unordered_set<int> sett(nums1.begin(), nums1.end());
+    vector<int> result;
+
+    for (int num : nums2) {
+        if (sett.find(num) != sett.end()) {
+            result.push_back(num);
+            sett.erase(num);  // To ensure no duplicates in the result
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    vector<int> nums1 = {1, 2, 2, 1};
+    vector<int> nums2 = {2, 2};
+
+    vector<int> result = intersectionArray(nums1, nums2);
+
+    for (int num : result) {
+        cout << num << " ";
+    }
+
+    return 0;
+}
